@@ -75,7 +75,7 @@ function my_custom_block_render_callback( $block, $content = '', $is_preview = f
 				echo '</div>';
 
 				echo '<div id="'. esc_attr( $collapse_id ) .'" class="collapse '. ($index === 0 ? 'show' : '') .'" aria-labelledby="'. esc_attr( $heading_id ) .'" data-parent="#'. esc_attr( $accordion_id ) .'">';
-				echo '<div class="card-body p-2">';
+				echo '<div class="card-body p-3">';
 				echo wp_kses_post( $unit_description );
 				echo '</div>';
 				echo '</div>';
