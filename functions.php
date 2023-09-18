@@ -17,10 +17,10 @@ function unit_block_init() {
 
 		// Register a new block.
 		acf_register_block_type(array(
-			'name'              => 'my_custom_block',
+			'name'              => 'acf_unit_block',
 			'title'             => __('Unit block'),
-			'description'       => __('A custom block.'),
-			'render_template'   => get_template_directory() . '/template-acf-block.php',
+			'description'       => __('A custom block for displaying units on about us.'),
+			'render_template'   => get_template_directory() . '/template-unit-block.php',
 			'category'          => 'formatting',
 			'icon'              => 'admin-comments',
 			'keywords'          => array( 'testimonial', 'quote' ),
