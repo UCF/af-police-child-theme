@@ -1,6 +1,6 @@
 # AF Police Child Theme
 
-{{Brief description of this theme}}.  Built as a child theme of the [UCF WordPress Theme](https://github.com/UCF/UCF-WordPress-Theme), using the [Athena Framework](https://ucf.github.io/Athena-Framework/).
+Theme for police.ucf.edu 2023 redesign.  Built as a child theme of the [UCF WordPress Theme](https://github.com/UCF/UCF-WordPress-Theme), using the [Athena Framework](https://ucf.github.io/Athena-Framework/).
 
 ## Quick links
 
