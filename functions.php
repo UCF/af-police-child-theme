@@ -50,7 +50,8 @@ function my_custom_block_render_callback( $block, $content = '', $is_preview = f
 			echo '<div style="border: 1px solid #000; padding: 16px; margin: 16px 0;">No unit fields set</div>';
 		endif;
 	} else {
-		// Code to display on the frontend
+		// Pass the $post_id variable to your template
+		set_query_var('block_post_id', $post_id);
 		include get_template_directory() . '/template-unit-block.php';
 	}
 }
