@@ -29,9 +29,6 @@ function unit_block_init() {
 	}
 }
 
-// Hook into setup.
-add_action('acf/init', 'unit_block_init');
-
 function my_custom_block_render_callback( $block ) {
 	// Get the ACF fields for this block
 	$unit_fields = get_field('unit');
@@ -50,3 +47,6 @@ function my_custom_block_render_callback( $block ) {
 		echo '<div style="border: 1px solid #000; padding: 16px; margin: 16px 0;">No unit fields set</div>';
 	}
 }
+
+// Hook into setup.
+add_action('acf/init', 'unit_block_init');
