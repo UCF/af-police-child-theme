@@ -30,6 +30,7 @@ function unit_block_init() {
 }
 
 function my_custom_block_render_callback( $block, $content = '', $is_preview = false, $post_id = 0 ) {
+	global $post;
 	if( $is_preview ) {
 		// Code to display preview in Gutenberg editor
 		if( have_rows('unit') ):
@@ -51,7 +52,7 @@ function my_custom_block_render_callback( $block, $content = '', $is_preview = f
 		endif;
 	} else {
 		// Pass the $post_id variable to your template
-		set_query_var('block_post_id', $post_id);
+		set_query_var('block_post_id', $post->ID);
 		include get_template_directory() . '/template-unit-block.php';
 	}
 }
