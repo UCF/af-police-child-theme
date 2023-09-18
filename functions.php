@@ -1,5 +1,5 @@
 <?php
-namespace AFMainSite\Theme;
+//namespace AFMainSite\Theme;
 
 define( 'AFMAINSITE_THEME_DIR', trailingslashit( get_stylesheet_directory() ) );
 
