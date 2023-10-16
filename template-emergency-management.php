@@ -34,7 +34,7 @@ the_post();
 					<!-- Sidebar with Navigation Menu for md viewports and above -->
 					<?php
 					wp_nav_menu(array(
-						'theme_location'  => 'security-menu',
+						'theme_location'  => 'emergency-management-menu',
 						'container'       => 'nav',
 						'container_class' => 'mb-1',
 						'menu_class'      => 'nav flex-column',
