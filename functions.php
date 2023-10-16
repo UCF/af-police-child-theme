@@ -10,7 +10,11 @@ include_once AFMAINSITE_THEME_DIR . 'includes/meta.php';
 
 // Add other includes to this file as needed.
 
-//Register unit/division blocks for about page
+/**
+ * Register unit/division blocks for about page
+ *
+ * @author Mike Setzer
+ **/
 function unit_block_init() {
 	// Check function exists.
 	if( function_exists('acf_register_block_type') ) {
@@ -29,6 +33,11 @@ function unit_block_init() {
 	}
 }
 
+/**
+ * Block render callback for Units on About Us page
+ *
+ * @author Mike Setzer
+ **/
 function my_custom_block_render_callback( $block, $content = '', $is_preview = false, $post_id = 0 ) {
 	global $post;
 	if( $is_preview ) {
@@ -91,7 +100,12 @@ function my_custom_block_render_callback( $block, $content = '', $is_preview = f
 // Hook into setup.
 add_action('acf/init', 'unit_block_init');
 
-//Fetch breadcrumbs to display at top of template page
+/**
+ * Fetch breadcrumbs and display at the top of the page in breadcrumb template
+ *
+ * @author Mike Setzer
+ **/
+
 if ( ! function_exists( 'theme_breadcrumbs' ) ) {
 	function theme_breadcrumbs() {
 		global $post;
@@ -124,5 +138,54 @@ if ( ! function_exists( 'theme_breadcrumbs' ) ) {
 
 		echo '</ol>';
 		echo '</div>';
+	}
+}
+
+/**
+ * Register menu location for department of security and emergency management pages
+ *
+ * @author Mike Setzer
+ **/
+function register_my_menus() {
+	register_nav_menus(
+		array(
+			'security-menu' => __( 'Security Menu' ),
+			'emergency-management-menu' => __( 'Emergency Management Menu'),
+		)
+	);
+}
+add_action( 'init', 'register_my_menus' );
+
+/**
+ * Register walker for security and emergency management menus
+ *
+ * @author Mike Setzer
+ **/
+class BS4_Nav_Walker extends Walker_Nav_Menu {
+	function start_lvl( &$output, $depth = 0, $args = [] ) {
+		$indent = str_repeat( "\t", $depth );
+		$class_to_add = ( $depth >= 0 ) ? 'ml-3' : ''; // Add ml-3 class to nested ul elements only
+		$output .= "\n$indent<ul class=\"nav flex-column $class_to_add\">\n";
+	}
+
+	function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 ) {
+		$active_class = '';
+		if ( in_array( 'current-menu-item', $item->classes, true ) ) {
+			$active_class = ' active bg-primary';
+		}
+		$output .= '<li class="nav-item' . $active_class . '">';
+
+		$link_classes = [ 'nav-link' ];
+		if ( $depth > 0 ) {
+			$link_classes[] = 'p';
+			$link_classes[] = 'pl-3'; // Add pl-3 to the link classes for nested links
+			$link_classes[] = 'text-muted'; // Add text-muted to the link classes for nested links
+			$link_classes[] = 'font-size-sm'; // Add font-size-sm to the link classes for nested links
+		} else {
+			$link_classes[] = 'h6 mb-0';
+		}
+		$link_class_str = implode( ' ', $link_classes );
+
+		$output .= '<a class="' . $link_class_str . '" href="' . $item->url . '">' . $item->title . '</a>';
 	}
 }
