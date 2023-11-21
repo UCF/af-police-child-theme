@@ -71,7 +71,7 @@ the_post();
 								</div>
 
 								<div id="collapse<?php echo $unique_id; ?>" class="collapse" aria-labelledby="heading<?php echo $unique_id; ?>" data-parent="#accordionExample">
-									<div class="card-body">
+									<div class="card-body p-3">
 										<?php
 										// Display the form shortcode or WYSIWYG content, if available
 										if( !empty($form_shortcode) ) {
