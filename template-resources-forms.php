@@ -73,11 +73,13 @@ the_post();
 								<div id="collapse<?php echo $unique_id; ?>" class="collapse" aria-labelledby="heading<?php echo $unique_id; ?>" data-parent="#accordionExample">
 									<div class="card-body">
 										<?php
-										// Check if the form shortcode is available, if not use WYSIWYG content
+										// Display the form shortcode or WYSIWYG content, if available
 										if( !empty($form_shortcode) ) {
 											echo do_shortcode($form_shortcode);
 										} elseif( !empty($form_wysiwyg) ) {
 											echo $form_wysiwyg;
+										} else {
+											echo '<p>No content available.</p>';
 										}
 										?>
 									</div>
@@ -92,6 +94,7 @@ the_post();
 					echo '<p>No forms or content available.</p>';
 				endif;
 				?>
+
 			</div>
 		</div>
 	</div>
