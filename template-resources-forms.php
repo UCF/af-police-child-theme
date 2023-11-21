@@ -52,9 +52,10 @@ the_post();
 
 					// Loop through the rows of data
 					while ( have_rows('form_repeater') ) : the_row();
-						// Load sub field value
+						// Load sub field values
 						$form_title = get_sub_field('form_title');
 						$form_shortcode = get_sub_field('form_shortcode');
+						$form_wysiwyg = get_sub_field('form_wysiwyg');
 						$unique_id = uniqid('form_'); // Generate a unique ID for each form
 
 						// Display the data
@@ -71,7 +72,14 @@ the_post();
 
 								<div id="collapse<?php echo $unique_id; ?>" class="collapse" aria-labelledby="heading<?php echo $unique_id; ?>" data-parent="#accordionExample">
 									<div class="card-body">
-										<?php echo do_shortcode($form_shortcode); ?>
+										<?php
+										// Check if the form shortcode is available, if not use WYSIWYG content
+										if( !empty($form_shortcode) ) {
+											echo do_shortcode($form_shortcode);
+										} elseif( !empty($form_wysiwyg) ) {
+											echo $form_wysiwyg;
+										}
+										?>
 									</div>
 								</div>
 							</div>
@@ -81,7 +89,7 @@ the_post();
 
 				else :
 					// No rows found
-					echo '<p>No forms available.</p>';
+					echo '<p>No forms or content available.</p>';
 				endif;
 				?>
 			</div>
