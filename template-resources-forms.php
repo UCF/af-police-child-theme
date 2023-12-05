@@ -43,11 +43,13 @@ the_post();
 										<?php
 										// Display the form shortcode or WYSIWYG content, if available
 										if( !empty($form_shortcode) && !empty($form_wysiwyg) ) {
+											echo "<h4>" . htmlspecialchars($form_title) . "</h4>";
 											echo $form_wysiwyg;
 											echo do_shortcode($form_shortcode);
 										} elseif( !empty($form_shortcode) ) {
 											echo do_shortcode($form_shortcode);
 										} elseif( !empty($form_wysiwyg) ) {
+											echo "<h4>" . htmlspecialchars($form_title) . "</h4>";
 											echo $form_wysiwyg;
 										} else {
 											echo '<p>No content available.</p>';
