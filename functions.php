@@ -75,10 +75,10 @@ function my_custom_block_render_callback( $block, $content = '', $is_preview = f
 				$collapse_id = "collapse_" . uniqid();
 
 				echo '<div class="card">';
-				echo '<div class="card-header" id="'. esc_attr( $heading_id ) .'">';
+				echo '<div class="card-header bg-inverse" id="'. esc_attr( $heading_id ) .'">';
 				echo '<h5 class="mb-0">';
-				echo '<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#'. esc_attr( $collapse_id ) .'" aria-expanded="'. ($index === 0 ? 'true' : 'false') .'" aria-controls="'. esc_attr( $collapse_id ) .'">';
-				echo esc_html( $unit_name );
+				echo '<button class="btn btn-link text-decoration-none text-primary" type="button" data-toggle="collapse" data-target="#'. esc_attr( $collapse_id ) .'" aria-expanded="'. ($index === 0 ? 'true' : 'false') .'" aria-controls="'. esc_attr( $collapse_id ) .'">';
+				echo '<i class="fa fa-chevron-down text-primary"></i> ' . esc_html( $unit_name );
 				echo '</button>';
 				echo '</h5>';
 				echo '</div>';
