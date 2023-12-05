@@ -33,7 +33,7 @@ the_post();
 								<div class="card-header bg-inverse" id="heading<?php echo $unique_id; ?>">
 									<h5 class="mb-0">
 										<button class="btn btn-link text-decoration-none text-primary" type="button" data-toggle="collapse" data-target="#collapse<?php echo $unique_id; ?>" aria-expanded="true" aria-controls="collapse<?php echo $unique_id; ?>">
-											<?php echo esc_html($form_title); ?>
+											<?php echo '<i class="fa fa-chevron-down text-primary"></i> ' . esc_html($form_title); ?>
 										</button>
 									</h5>
 								</div>
