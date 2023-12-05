@@ -32,7 +32,7 @@ the_post();
 						echo '<div class="col col-12">';
 
 						if ( !empty($job_title) ) {echo '<h2 class="h5 heading-underline">' . $job_title . '</h2>'; }
-						if ( !empty($base_pay) ) { echo '<span class="font-weight-black text-uppercase h4 letter-spacing-1"> Base Pay: ' . $base_pay . '</span>'; }
+						if ( !empty($base_pay) ) { echo '<span class="font-weight-black h4 letter-spacing-1 mb-2"> Base Pay: ' . $base_pay . '</span>'; }
 						if ( !empty($description) ) { echo '<div>' . $description . '</div>'; }
 						if ( !empty($job_link) ) { echo '<a href="' . $job_link . '" class="btn btn-primary">Apply</a>'; }
 						if ( !empty($salary_link) ) { echo '<a href="' . $salary_link . '" class="btn btn-secondary ml-2">Salary Breakdown</a>'; }
