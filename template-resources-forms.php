@@ -30,9 +30,9 @@ the_post();
 						?>
 						<div class="accordion" id="accordionExample">
 							<div class="card">
-								<div class="card-header" id="heading<?php echo $unique_id; ?>">
+								<div class="card-header bg-inverse" id="heading<?php echo $unique_id; ?>">
 									<h5 class="mb-0">
-										<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<?php echo $unique_id; ?>" aria-expanded="true" aria-controls="collapse<?php echo $unique_id; ?>">
+										<button class="btn btn-link text-decoration-none text-primary" type="button" data-toggle="collapse" data-target="#collapse<?php echo $unique_id; ?>" aria-expanded="true" aria-controls="collapse<?php echo $unique_id; ?>">
 											<?php echo esc_html($form_title); ?>
 										</button>
 									</h5>
