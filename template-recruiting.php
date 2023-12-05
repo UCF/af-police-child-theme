@@ -16,7 +16,7 @@ the_post();
 			// Check if the repeater field has rows of data
 			if( have_rows('job') ):
 
-				echo '<div class="container">';
+				echo '<div class="container mb-5">';
 					// Loop through the rows of data
 					while ( have_rows('job') ) : the_row();
 
@@ -31,7 +31,7 @@ the_post();
 						echo '<div class="row pt-5 mt-5" style="border-top: 1px solid #ccc;">';
 						echo '<div class="col col-12">';
 
-						if ( !empty($job_title) ) {echo '<h2 class="h5 heading-underline">' . $job_title . '</h2>'; }
+						if ( !empty($job_title) ) {echo '<h3 class="h4 heading-underline">' . $job_title . '</h3>'; }
 						if ( !empty($base_pay) ) { echo '<span class="font-weight-black h4 letter-spacing-1 mb-2"> Base Pay: ' . $base_pay . '</span>'; }
 						if ( !empty($description) ) { echo '<div>' . $description . '</div>'; }
 						if ( !empty($job_link) ) { echo '<a href="' . $job_link . '" class="btn btn-primary">Apply</a>'; }
