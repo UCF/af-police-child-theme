@@ -43,12 +43,15 @@ the_post();
 										<?php
 										// Display the form shortcode or WYSIWYG content, if available
 										if( !empty($form_shortcode) && !empty($form_wysiwyg) ) {
+											// Echo Title, Text, and Form
 											echo "<h4>" . htmlspecialchars($form_title) . "</h4>";
 											echo $form_wysiwyg;
 											echo do_shortcode($form_shortcode);
 										} elseif( !empty($form_shortcode) ) {
+											// Echo only form, not title needed as form shortcode will display the title
 											echo do_shortcode($form_shortcode);
 										} elseif( !empty($form_wysiwyg) ) {
+											// No form, echo title and text
 											echo "<h4>" . htmlspecialchars($form_title) . "</h4>";
 											echo $form_wysiwyg;
 										} else {
