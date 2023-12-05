@@ -42,7 +42,10 @@ the_post();
 									<div class="card-body p-3">
 										<?php
 										// Display the form shortcode or WYSIWYG content, if available
-										if( !empty($form_shortcode) ) {
+										if( !empty($form_shortcode) && !empty($form_wysiwyg) ) {
+											echo $form_wysiwyg;
+											echo do_shortcode($form_shortcode);
+										} elseif( !empty($form_shortcode) ) {
 											echo do_shortcode($form_shortcode);
 										} elseif( !empty($form_wysiwyg) ) {
 											echo $form_wysiwyg;
