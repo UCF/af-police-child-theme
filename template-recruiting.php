@@ -1,0 +1,49 @@
+<?php
+/**
+ * Template Name: Recruiting
+ * Template Post Type: page, post
+ */
+get_header();
+the_post();
+?>
+
+	<article class="<?php echo $post->post_status; ?> post-list-item">
+		<div class="container-fluid px-0 mt-4 mt-sm-5">
+			<?php
+			theme_breadcrumbs();
+			the_content();
+
+			// Check if the repeater field has rows of data
+			if( have_rows('job') ):
+
+				// Loop through the rows of data
+				while ( have_rows('job') ) : the_row();
+
+					// Fetch sub field values
+					$job_title = get_sub_field('job_title');
+					$base_pay = get_sub_field('base_pay');
+					$description = get_sub_field('description');
+					$job_link = get_sub_field('job_link');
+					$salary_link = get_sub_field('salary_link');
+
+					// Display the sub field values
+					echo '<div class="job-container" style="border-top: 1px solid #ccc; padding-top: 15px;">';
+					echo '<h2 class="h5 heading-underline">' . $job_title . '</h2>';
+					echo '<span class="font-weight-black text-uppercase h3 letter-spacing-1">' . $base_pay . '</span>';
+					echo '<div>' . $description . '</div>'; // Renders HTML from WYSIWYG
+					echo '<a href="' . $job_link . '" class="btn btn-primary">Apply</a>';
+					echo '<a href="' . $salary_link . '" class="btn btn-secondary ml-2">Salary Breakdown</a>';
+					echo '</div>';
+
+				endwhile;
+
+			else :
+
+				// No rows found
+
+			endif;
+			?>
+		</div>
+	</article>
+
+<?php get_footer(); ?>
