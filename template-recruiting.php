@@ -16,26 +16,30 @@ the_post();
 			// Check if the repeater field has rows of data
 			if( have_rows('job') ):
 
-				// Loop through the rows of data
-				while ( have_rows('job') ) : the_row();
+				echo '<div class="container">';
+					// Loop through the rows of data
+					while ( have_rows('job') ) : the_row();
 
-					// Fetch sub field values
-					$job_title = get_sub_field('job_title');
-					$base_pay = get_sub_field('base_pay');
-					$description = get_sub_field('description');
-					$job_link = get_sub_field('job_link');
-					$salary_link = get_sub_field('salary_link');
+						// Fetch sub field values
+						$job_title = get_sub_field('job_title');
+						$base_pay = get_sub_field('base_pay');
+						$description = get_sub_field('description');
+						$job_link = get_sub_field('job_link');
+						$salary_link = get_sub_field('salary_link');
 
-					// Display the sub field values
-					echo '<div class="job-container" style="border-top: 1px solid #ccc; padding-top: 15px;">';
-					echo '<h2 class="h5 heading-underline">' . $job_title . '</h2>';
-					echo '<span class="font-weight-black text-uppercase h3 letter-spacing-1">' . $base_pay . '</span>';
-					echo '<div>' . $description . '</div>'; // Renders HTML from WYSIWYG
-					echo '<a href="' . $job_link . '" class="btn btn-primary">Apply</a>';
-					echo '<a href="' . $salary_link . '" class="btn btn-secondary ml-2">Salary Breakdown</a>';
-					echo '</div>';
+						// Display the sub field values
+						echo '<div class="row pt-3" style="border-top: 1px solid #ccc;">';
+						echo '<div class="col col-12;">';
+						echo '<h2 class="h5 heading-underline">' . $job_title . '</h2>';
+						echo '<span class="font-weight-black text-uppercase h3 letter-spacing-1">' . $base_pay . '</span>';
+						echo '<div>' . $description . '</div>'; // Renders HTML from WYSIWYG
+						echo '<a href="' . $job_link . '" class="btn btn-primary">Apply</a>';
+						echo '<a href="' . $salary_link . '" class="btn btn-secondary ml-2">Salary Breakdown</a>';
+						echo '</div>';
+						echo '</div>';
 
-				endwhile;
+					endwhile;
+				echo '</div>';
 
 			else :
 
