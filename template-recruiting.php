@@ -28,13 +28,14 @@ the_post();
 						$salary_link = get_sub_field('salary_link');
 
 						// Display the sub field values
-						echo '<div class="row pt-3" style="border-top: 1px solid #ccc;">';
-						echo '<div class="col col-12;">';
-						echo '<h2 class="h5 heading-underline">' . $job_title . '</h2>';
-						echo '<span class="font-weight-black text-uppercase h3 letter-spacing-1">' . $base_pay . '</span>';
-						echo '<div>' . $description . '</div>'; // Renders HTML from WYSIWYG
-						echo '<a href="' . $job_link . '" class="btn btn-primary">Apply</a>';
-						echo '<a href="' . $salary_link . '" class="btn btn-secondary ml-2">Salary Breakdown</a>';
+						echo '<div class="row pt-5 mt-5" style="border-top: 1px solid #ccc;">';
+						echo '<div class="col col-12">';
+
+						if ( !empty($job_title) ) {echo '<h2 class="h5 heading-underline">' . $job_title . '</h2>'; }
+						if ( !empty($base_pay) ) { echo '<span class="font-weight-black text-uppercase h3 letter-spacing-1">' . $base_pay . '</span>'; }
+						if ( !empty($description) ) { echo '<div>' . $description . '</div>'; }
+						if ( !empty($job_link) ) { echo '<a href="' . $job_link . '" class="btn btn-primary">Apply</a>'; }
+						if ( !empty($salary_link) ) { echo '<a href="' . $salary_link . '" class="btn btn-secondary ml-2">Salary Breakdown</a>'; }
 						echo '</div>';
 						echo '</div>';
 
