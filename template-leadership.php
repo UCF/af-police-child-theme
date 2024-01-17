@@ -12,13 +12,17 @@ the_post();
 			<?php theme_breadcrumbs(); ?>
 
 			<!-- Leadership Team Section -->
-			<p>Test</p>
 			<div class="row">
 				<div class="col-12">
 					<?php
 					$args = array(
 						'post_type'      => 'leadership-post',
 						'posts_per_page' => -1, // Retrieve all posts
+						'meta_key' => 'order',
+						'orderby' => array(
+							'meta_value_num' => 'ASC',
+							'date' => 'DESC'
+						),
 						//'orderby'        => 'meta_value_num', // Order by numeric meta value
 						//'meta_key'       => 'order', // Field to sort by
 						//'order'          => 'ASC', // Ascending order
