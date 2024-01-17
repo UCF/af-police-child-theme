@@ -12,15 +12,16 @@ the_post();
 			<?php theme_breadcrumbs(); ?>
 
 			<!-- Leadership Team Section -->
+			<p>Test</p>
 			<div class="row">
 				<div class="col-12">
 					<?php
 					$args = array(
 						'post_type'      => 'leadership-post',
 						'posts_per_page' => -1, // Retrieve all posts
-						'orderby'        => 'meta_value_num', // Order by numeric meta value
-						'meta_key'       => 'order', // Field to sort by
-						'order'          => 'ASC', // Ascending order
+						//'orderby'        => 'meta_value_num', // Order by numeric meta value
+						//'meta_key'       => 'order', // Field to sort by
+						//'order'          => 'ASC', // Ascending order
 					);
 					$query = new WP_Query($args);
 
