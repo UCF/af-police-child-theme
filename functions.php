@@ -152,6 +152,7 @@ function register_my_menus() {
 			'security-menu' => __( 'Security Menu' ),
 			'emergency-management-menu' => __( 'Emergency Management Menu'),
 			'resources-menu' => __( 'Resources Menu' ),
+			'clery-menu' => __( 'Clery Menu' ),
 		)
 	);
 }
