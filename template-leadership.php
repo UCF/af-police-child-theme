@@ -11,6 +11,15 @@ the_post();
 		<div class="container mt-4 mt-sm-5 mb-5 pb-sm-4">
 			<?php theme_breadcrumbs(); ?>
 
+			<?php if (!empty(get_the_content())) : ?>
+				<!-- Main Content Area -->
+				<div class="row">
+					<div class="col-12">
+						<?php the_content(); ?>
+					</div>
+				</div>
+			<?php endif; ?>
+
 			<!-- Leadership Team Section -->
 			<div class="row">
 				<div class="col-12">
@@ -82,15 +91,6 @@ the_post();
 					?>
 				</div>
 			</div>
-
-			<?php if (!empty(get_the_content())) : ?>
-				<!-- Main Content Area -->
-				<div class="row">
-					<div class="col-12">
-						<?php the_content(); ?>
-					</div>
-				</div>
-			<?php endif; ?>
 		</div>
 	</article>
 
