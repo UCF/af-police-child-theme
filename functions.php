@@ -199,13 +199,16 @@ class BS4_Nav_Walker extends Walker_Nav_Menu {
  **/
 add_filter( 'gform_custom_merge_tags', 'add_sequential_number_merge_tag', 10, 4 );
 function add_sequential_number_merge_tag( $merge_tags, $form_id, $fields, $element_id ) {
-	$configured_form_id = get_option('gf_sequential_form_id');
+	$configured_form_id = 3; // Set the form ID to 3
+
 	if ( $form_id == $configured_form_id ) {
 		$merge_tags[] = array(
 			'label' => 'Sequential Number',
 			'tag'   => '{sequential_number}',
 		);
 	}
+
+	error_log('Sequential Number merge tag registered for form ID: ' . $form_id);
 	return $merge_tags;
 }
 
@@ -220,9 +223,10 @@ function replace_sequential_number_merge_tag( $text, $form, $entry, $url_encode,
 		return $text;
 	}
 
-	$configured_form_id = get_option('gf_sequential_form_id');
+	$configured_form_id = 3; // Set the form ID to 3
+
 	if ( $form['id'] == $configured_form_id ) {
-		$starting_number = get_option('gf_sequential_starting_number');
+		$starting_number = 1; // Set the starting number to 1
 		$current_year = date('Y');
 		$last_year = get_option( 'gf_sequential_year' );
 		$last_sequential_number = get_option( 'gf_sequential_number' );
