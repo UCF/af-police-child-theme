@@ -199,8 +199,8 @@ class BS4_Nav_Walker extends Walker_Nav_Menu {
  **/
 add_filter( 'gform_custom_merge_tags', 'add_sequential_number_merge_tag', 10, 4 );
 function add_sequential_number_merge_tag( $merge_tags, $form_id, $fields, $element_id ) {
-	$configured_form_id = get_field('gravity_form_id', 'option_csa-form-sequential-fields');
-	if ( $configured_form_id && $form_id == $configured_form_id ) {
+	$configured_form_id = get_option('gf_sequential_form_id');
+	if ( $form_id == $configured_form_id ) {
 		$merge_tags[] = array(
 			'label' => 'Sequential Number',
 			'tag'   => '{sequential_number}',
@@ -216,46 +216,25 @@ function add_sequential_number_merge_tag( $merge_tags, $form_id, $fields, $eleme
  **/
 add_filter( 'gform_replace_merge_tags', 'replace_sequential_number_merge_tag', 10, 7 );
 function replace_sequential_number_merge_tag( $text, $form, $entry, $url_encode, $esc_html, $nl2br, $format ) {
-	// Validate that form and entry are arrays
 	if ( !is_array( $form ) || !is_array( $entry ) ) {
 		return $text;
 	}
 
-	// Fetch ACF fields and log their values for debugging
-	$configured_form_id = get_field('gravity_form_id', 'option_csa-form-sequential-fields');
-	$starting_number = get_field('starting_number', 'option_csa-form-sequential-fields');
-	error_log('Form ID from ACF: ' . $configured_form_id);
-	error_log('Starting Number from ACF: ' . $starting_number);
-
-	// Check for valid ACF field values
-	if ( !$configured_form_id || !$starting_number ) {
-		error_log('Error: ACF fields not fetched correctly.');
-		return $text;
-	}
-
-	// Ensure the values are integers
-	$configured_form_id = intval($configured_form_id);
-	$starting_number = intval($starting_number);
-
-	// Proceed only for the configured form ID
+	$configured_form_id = get_option('gf_sequential_form_id');
 	if ( $form['id'] == $configured_form_id ) {
-		$current_year = date('Y'); // Current year
+		$starting_number = get_option('gf_sequential_starting_number');
+		$current_year = date('Y');
 		$last_year = get_option( 'gf_sequential_year' );
-		$last_sequential_number = (int) get_option( 'gf_sequential_number' );
+		$last_sequential_number = get_option( 'gf_sequential_number' );
 
 		if ( $last_year == $current_year ) {
-			// Continue the sequence
 			$sequential_number = $last_sequential_number + 1;
 		} else {
-			// Reset the sequence for a new year
 			$sequential_number = $starting_number;
 			update_option( 'gf_sequential_year', $current_year );
 		}
 
-		// Update the last sequential number
 		update_option( 'gf_sequential_number', $sequential_number );
-
-		// Replace the merge tag with the sequential number
 		$text = str_replace( '{sequential_number}', $sequential_number, $text );
 	}
 
