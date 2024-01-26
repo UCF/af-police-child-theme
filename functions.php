@@ -191,3 +191,54 @@ class BS4_Nav_Walker extends Walker_Nav_Menu {
 		$output .= '<a class="' . $link_class_str . '" href="' . $item->url . '">' . $item->title . '</a>';
 	}
 }
+
+/**
+ * Register a new merge tag for the sequential numbering on the CSA Incident Reporting Form
+ *
+ * @author Mike Setzer
+ **/
+add_filter( 'gform_custom_merge_tags', 'add_sequential_number_merge_tag', 10, 4 );
+function add_sequential_number_merge_tag( $merge_tags, $form_id, $fields, $element_id ) {
+	$configured_form_id = get_field('gravity_form_id', 'option_csa-form-sequential-fields');
+	if ( $form_id == $configured_form_id ) {
+		$merge_tags[] = array(
+			'label' => 'Sequential Number',
+			'tag'   => '{sequential_number}',
+		);
+	}
+	return $merge_tags;
+}
+
+/**
+ * Replace the merge tag with the actual sequential number
+ *
+ * @author Mike Setzer
+ **/
+add_filter( 'gform_replace_merge_tags', 'replace_sequential_number_merge_tag', 10, 7 );
+function replace_sequential_number_merge_tag( $text, $form, $entry, $url_encode, $esc_html, $nl2br, $format ) {
+	$configured_form_id = get_field('gravity_form_id', 'option_csa-form-sequential-fields');
+	if ( $form['id'] == $configured_form_id ) {
+		$starting_number = get_field('starting_number', 'option_csa-form-sequential-fields'); // Starting number for each year
+		$current_year = date('Y'); // Current year
+
+		// Get the last saved year and sequential number
+		$last_year = get_option( 'gf_sequential_year' );
+		$last_sequential_number = get_option( 'gf_sequential_number' );
+
+		if ( $last_year == $current_year ) {
+			// Continue the sequence
+			$sequential_number = $last_sequential_number + 1;
+		} else {
+			// Reset the sequence for a new year
+			$sequential_number = $starting_number;
+			update_option( 'gf_sequential_year', $current_year );
+		}
+
+		// Update the last sequential number
+		update_option( 'gf_sequential_number', $sequential_number );
+
+		// Replace the merge tag with the sequential number
+		$text = str_replace( '{sequential_number}', $sequential_number, $text );
+	}
+	return $text;
+}
